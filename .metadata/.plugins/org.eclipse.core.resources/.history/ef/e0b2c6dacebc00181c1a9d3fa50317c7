@@ -1,0 +1,4 @@
+DB_URL = jdbc:mysql://localhost:3306/bankAppDb;
+USERNAME = root;
+PASSWORD = root;
+path=com.mysql.cj.jdbc.Driver;

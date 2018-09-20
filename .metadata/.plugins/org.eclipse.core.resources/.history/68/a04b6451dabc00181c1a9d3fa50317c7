@@ -1,0 +1,43 @@
+package com.capgemini.bankapp.repository.Impl;
+
+import java.util.HashSet;
+
+import org.springframework.stereotype.Repository;
+
+import com.capgemini.bankapp.entities.BankAccount;
+import com.capgemini.bankapp.repository.BankAccountRepository;
+@Repository
+public class BankAccountRepositoryImpl implements BankAccountRepository {
+private HashSet<BankAccount> accounts;
+
+	public BankAccountRepositoryImpl() {
+	super();
+	accounts=new HashSet<>();
+	accounts.add(new BankAccount(1234,"John","Savings",34000));
+	accounts.add(new BankAccount(123,"Tom","Savings",40000));
+	accounts.add(new BankAccount(12,"Sam","Current",50000));
+}
+
+	public double getBalance(long accountId) {
+		for(BankAccount bankAccount:accounts) {
+			if(bankAccount.getAccountId()==accountId)
+			{
+				return bankAccount.getAccountBalance();
+			}
+		}
+		return -1;
+		}
+	
+
+	public boolean updateBalance(long accountId, double newBalance) {
+		for (BankAccount bankAccount : accounts) {
+			if(bankAccount.getAccountId()==accountId)
+			{
+				bankAccount.setAccountBalance(newBalance);
+				return true;
+			}
+	}
+		return false;
+
+	}
+}
