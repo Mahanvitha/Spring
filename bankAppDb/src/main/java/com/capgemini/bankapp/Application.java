@@ -16,19 +16,21 @@ public class Application {
 //		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	ApplicationContext context =  new AnnotationConfigApplicationContext(AppConfig.class);
 		BankAccountController bankAccountController = 	context.getBean("bankAccountController", BankAccountController.class);
-		System.out.println(bankAccountController.getBalance(1234));
+		System.out.println(bankAccountController.getBalance(12343));
+		
+		DbUtil dbutil = context.getBean(DbUtil.class);
+		dbutil.getConnection();
 		try {
-			System.out.println(bankAccountController.withdraw(1234,4000 ));
-			System.out.println(bankAccountController.deposit(123,2000 ));
-			System.out.println(bankAccountController.getBalance(123));
-			System.out.println(bankAccountController.fundTransfer(1234,12,1000));
-			System.out.println("\n"+bankAccountController.getBalance(1234));
-			System.out.println("\n"+bankAccountController.getBalance(12));
+			System.out.println(bankAccountController.withdraw(12343,4000 ));
+			System.out.println(bankAccountController.deposit(12343,2000 ));
+			System.out.println(bankAccountController.getBalance(12343));
+			System.out.println(bankAccountController.fundTransfer(12344,12343,2000));
+			System.out.println("\n"+bankAccountController.getBalance(12344));
+			System.out.println("\n"+bankAccountController.getBalance(12343));
 		} catch (LowBalanceException e) {
 			e.printStackTrace();
 		}
-		DbUtil dbutil = context.getBean(DbUtil.class);
-		dbutil.getConnection();
+		
 	}
 
 }

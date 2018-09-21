@@ -14,11 +14,11 @@ import org.springframework.core.env.Environment;
 @Configuration
 @PropertySource("classpath:dbutil.properties")
 public class DbUtil {
-	@Value("${dbutil.properties}")
+	@Value("${DB_URL}")
 	private String dburl;
-	@Value("${dbutil.properties}")
+	@Value("${db.USERNAME}")
 	private  String username;
-	@Value("${dbutil.properties}")
+	@Value("${db.PASSWORD}")
 	private  String password;
 	@Value("${path}")
 	private String path;
@@ -28,8 +28,8 @@ public class DbUtil {
 		Connection connection = null;
 
 		try {
-			Class.forName("path");
-			System.out.println(dburl+"\t"+username+"\t"+password);
+			Class.forName(path);
+//			System.out.println(dburl+"\t"+username+"\t"+password);
 			connection = DriverManager.getConnection(dburl, username, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
